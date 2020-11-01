@@ -1,0 +1,148 @@
+% Create a one-sided article document type
+\documentclass[a4paper, twoside, 12pt]{article}
+
+% Define the course variables that are gonna be used several times
+\newcommand{\university}{Universidad\ Politécnica\ de\ Madrid}
+\newcommand{\school}{Escuela\ Técnica\ Superior\ de\ XXX}
+\newcommand{\degree}{Grado/Máster\ Universitario\ en\ XXX}    
+\newcommand{\tfm}{Bachelor/Master\ Thesis}
+\newcommand{\name}{XXXXX}
+\newcommand{\me}{--- --- ---}
+\newcommand{\supervisor}{--- --- ---}
+
+% Configure the metadata of the PDF document
+\usepackage[
+	bookmarks       = true,             % Show the bookmarks
+	unicode         = true,             % Use Unicode                 
+	pdftoolbar      = true,             % Show Acrobat’s toolbar
+	pdfmenubar      = true,             % Show Acrobat’s menu
+	pdffitwindow    = false,            % Window fit to page when opened
+	pdfstartview    = {FitH},           % Fit the page width to the window
+	pdfauthor       = {\me},            % The author of this document
+	pdftitle        = {\name\ --\ \me}, % The title of this document
+	pdfsubject      = {\name},          % The subject of this document
+	pdfkeywords     = {\name},          % The keywords of this document
+	pdfnewwindow    = true,             % Open the links in a new PDF window
+	colorlinks      = true,             % Use colored links
+	linkcolor       = blue,             % Internal links color
+	citecolor       = green,            % Bibliographic links color
+	filecolor       = cyan,             % File links color
+	urlcolor        = magenta           % External links color
+]{hyperref}
+
+% Redefine the size and margins (delete the 'twoside' indentation)
+\usepackage[a4paper]{geometry}
+% Define the geometry of the document
+\newgeometry {
+    top = 2.2cm, 
+    bottom = 2.2cm, 
+    right = 2cm, 
+    left = 2cm
+}
+% Use UTF-8 as input encoding
+\usepackage[utf8]{inputenc}
+% Use a modern font (that is not pixelated)
+\usepackage{lmodern}
+% Use microtype to improve readability
+\usepackage[protrusion = true, expansion = true]{microtype} 
+% Use multiple columns
+\usepackage{multicol}
+% Display two figures next to each other
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+% Display list of Equations
+\usepackage{tocloft}
+% Insert empty pages
+\usepackage{afterpage}
+% Configure style aspects of the document
+\usepackage{caption}            % To configure the captions
+\usepackage{siunitx}            % For SI units
+\usepackage{graphicx}           % To include graphics
+\usepackage[dvipsnames]{xcolor} % To configure colors
+\usepackage{fancyhdr}           % To configure the header and footer
+\pagestyle{fancy}               % Use a fancy header style
+\fancyhf{}                      % Set the header format
+\fancyheadoffset{0.0 cm}        % Set the header offset
+\lhead{\tfm}                    % Set the header right-side contents
+\rhead{\name}                   % Set the header left-side contents
+\cfoot{\thepage}                % Set the footer page number
+
+% Create a custom command shortcut
+\renewcommand{\arraystretch}{1.3} % Modify the vertical spacing of the tables
+\raggedbottom                     % Modify the vertical spacing of enumerated environments
+
+% Set empty page 
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
+}
+
+% Set the title format
+\title {
+	\vspace*{1.0 cm}
+	\Large\textbf{\uppercase{\university}} \\
+	\vspace*{0.5 cm}
+	\large\textbf{\uppercase{\school}} \\
+	\vspace*{2 cm}
+	\large\text{\uppercase{\degree}} \\
+	\vspace*{2 cm}
+	\large\text{\uppercase{\tfm}} \\
+	\vspace*{1.0 cm}
+	\LARGE\textbf{\uppercase{\name}} \\
+}
+
+% Set the author format
+\author {
+	\normalsize
+	\begin{tabbing}
+        \hspace*{0.4\linewidth} \= \hspace*{0.5\linewidth} \= \kill
+    	\> Author: \' \textbf{\me} \\[0.25cm]
+    	\> Supervisor: \' \textbf{\supervisor} \\
+    \end{tabbing}
+    
+    \vspace{2cm}
+}
+
+% Set the date format
+\date { 
+    Madrid, MM YYYY
+}
+
+% A macro to print the title
+\makeatletter
+\def\printtitle{{\centering\@title\par}}
+\makeatother
+
+% A macro to print the author
+\makeatletter
+\def\printauthor{{\centering\large\@author}}
+\makeatother
+
+% A macro to print the date
+\makeatletter
+\def\printdate{{\centering\@date}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start the document
+\begin{document}
+    % Include the cover
+    \afterpage{\blankpage}
+    \input{cover.tex}
+    % Include the different sections
+    \input{includes/abstract}
+    \input{includes/resumen}
+    \input{includes/acknowledgement}
+    \input{includes/index}
+    \input{includes/index_tables}
+    \input{includes/index_figures}
+    \input{includes/index_equations}
+    \input{includes/intro}
+    \input{includes/development}
+    \input{includes/conclusions}
+    \input{includes/references}
+    \input{includes/annex}
+\end{document}
+% Finish the document
