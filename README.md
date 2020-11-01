@@ -15,4 +15,6 @@ Latex template for Universidad Politécnica de Madrid (UPM) thesis. Perfect for 
 - Annex
 
 ## Preview
-![Cover preview](images/cover-preview.png "Cover") ![Contents index preview](images/contents-index-preview.png "Contents index")
+Cover                         |  Contents index                        |  Tables, Figures & Equations index     |  Content example
+:----------------------------:|:--------------------------------------:|:--------------------------------------:|:--------------------------------------:
+![](images/cover-preview.png) | ![](images/contents-index-preview.png) | ![](images/other-index-preview.png) | ![](images/content-example-preview.png)
